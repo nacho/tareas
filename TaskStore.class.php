@@ -1,13 +1,14 @@
 <?php
 
 include_once("task.class.php");
+include_once("UserStore.class.php");
 include_once("Store.class.php");
 
 class TaskStore extends Store
 {
 	function __construct($db)
 	{
-		parente::__construct($db);
+		parent::__construct($db);
 	}
 	
 	public function getNumWeeks()
@@ -29,11 +30,11 @@ class TaskStore extends Store
 			$task = new Task($r['name'], $r['week']);
 			if ($r['IdUser'] != 0)
 			{
-				$userStore = new UserStore(parent::$db);
-				$user = $userStore.getUserFromID($r['IdUser']);
-				$tarea->setUser($user);
+				$userStore = new UserStore($this->db);
+				$user = $userStore->getUserFromID($r['IdUser']);
+				$task->setUser($user);
 			}
-			array_push($tasks, $tarea);
+			array_push($tasks, $task);
 		}
 		
 		return $tasks;

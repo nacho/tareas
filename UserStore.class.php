@@ -40,7 +40,7 @@ class UserStore extends Store
 		else
 		{
 			$result = $this->getResult();
-			$user = new User($result['nombre'], $result['pass'], $result['email']);
+			$user = new User($result['name'], $result['pass'], $result['email']);
 		}
 		
 		return $user;

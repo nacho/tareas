@@ -1,21 +1,21 @@
 <?php
 
-class Tarea
+class Task
 {
-	private $nombre;
+	private $name;
 	private $user;
-	private $semana;
+	private $week;
 
-	public function __construct($nombre, $semana)
+	public function __construct($name, $week)
 	{
-		$this->nombre = $nombre;
-		$this->semana = $semana;
+		$this->name = $name;
+		$this->week = $week;
 		$this->user = null;
 	}
 	
-	public function getNombre()
+	public function getName()
 	{
-		return $this->nombre;
+		return $this->name;
 	}
 	
 	public function getUser()
@@ -33,9 +33,9 @@ class Tarea
 		$this->user != null;
 	}
 	
-	public function getSemana()
+	public function getWeek()
 	{
-		return $this->semana;
+		return $this->week;
 	}
 }
 

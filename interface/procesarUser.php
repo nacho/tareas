@@ -15,7 +15,7 @@
 	if ($user != null)
 	{
 		$app->setUser($user);
-		header("Location: week.php");
+		header("Location: main.php");
 		exit;
 	}
 ?>
