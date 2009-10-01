@@ -16,17 +16,9 @@
 	{
 		$app->setUser($user);
 		header("Location: main.php");
-		exit;
+	}
+	else
+	{
+		echo "<h1>ERROR: el usuario es incorrecto</h1>";
 	}
 ?>
-
-<html>
-<body>
-	<?php
-		if ($user == null)
-		{
-			echo "<h1>ERROR: el usuario es incorrecto</h1>";
-		}
-	?>
-</body>
-</html>
