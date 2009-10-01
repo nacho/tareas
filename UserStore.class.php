@@ -13,33 +13,32 @@ class UserStore extends Store
 	# This returns an User or null if there is no user
 	public function checkUser($name, $pass)
 	{
-		$result;
-		$user;
+		$user = null;
 		
 		$result = $this->dbQuery("SELECT * FROM user WHERE name='".$name."' AND ".
 					 "pass='".$pass."'");
 	
-		if ($result = false)
-			$user = null;
-		else
+		$r = $this->getResult();
+		
+		if ($r != null)
 		{
-			$r = $this->getResult();
-			
 			$user = new User($r['name'], $r['pass'], $r['email']);
 		}
+		
 		
 		return $user;
 	}
 	
 	public function getUserFromID($id)
 	{
+		$user = null;
+		
 		$r = $this->dbQuery("SELECT * FROM user WHERE id='".$id."'");
 		
-		if ($r = false)
-			$user = null;
-		else
+		$result = $this->getResult();
+		
+		if ($result != null)
 		{
-			$result = $this->getResult();
 			$user = new User($result['name'], $result['pass'], $result['email']);
 		}
 		
