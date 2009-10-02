@@ -27,6 +27,7 @@ class Store
 		
 		$this->query = $query;
 		
+		$this->db->dbConnect();
 		return $this->result = mysql_query($this->query, $this->db->getDBI());
 	}//dbQuery
 	

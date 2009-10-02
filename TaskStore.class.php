@@ -3,6 +3,7 @@
 include_once("task.class.php");
 include_once("UserStore.class.php");
 include_once("Store.class.php");
+include_once("utils.php");
 
 class TaskStore extends Store
 {
@@ -22,8 +23,8 @@ class TaskStore extends Store
 	public function getTasks()
 	{
 		$tasks = array();
-	
-		$this->dbQuery ("SELECT * FROM task");
+		
+		$this->dbQuery("SELECT * FROM task");
 		
 		while ($r = $this->getResult())
 		{
@@ -38,6 +39,11 @@ class TaskStore extends Store
 		}
 		
 		return $tasks;
+	}
+	
+	public function addTask($task)
+	{
+		$this->dbQuery("INSERT INTO task (idTask, IdUser, name, week) VALUES (NULL, '', '".$task->getName()."', '".$task->getWeek()."')");
 	}
 }
 

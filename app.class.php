@@ -14,11 +14,10 @@ class App
 	private $user;
 	
 	#	Constructor
-	public function __construct ()
+	function __construct ()
 	{
 		$this->db = new DB("localhost", "tareas", "root", "IvXu5ir");
 		#FIXME: Create db if it does not exists
-		$this->db->dbConnect();
 		
 		$this->user = null;
 	}

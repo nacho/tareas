@@ -16,26 +16,43 @@ function GetXmlHttpObject()
 	return xmlhttp;
 }
 
-function getTask()
+var xmlhttp;
+var divIdName;
+
+function stateChangedWeekAdded()
 {
-	return "<button type='button'>Task1</button>"+
-	       "<button type='button'>Task2</button>"+
-	       "<button type='button'>Task3</button>"+
-	       "<button type='button'>Task4</button>";
+	if (xmlhttp.readyState == 4)
+	{
+		var div = document.getElementById('weeks');
+		var newdiv = document.createElement('div');
+		
+		newdiv.setAttribute('id', divIdName);
+		newdiv.setAttribute('class', "week");
+		newdiv.innerHTML = xmlhttp.responseText;
+		div.appendChild(newdiv);
+	}
 }
 
 function addWeek()
 {
-	var div = document.getElementById('weeks');
-	var newdiv = document.createElement('div');
 	var date = new Date();
-	var divIdName = date.getDate()+"-"+date.getMonth() + 1+"-"+date.getFullYear();
+	divIdName = date.getDate()+"-"+date.getMonth() + 1+"-"+date.getFullYear();
 	
 	if (document.getElementById(divIdName) == null)
 	{
-		newdiv.setAttribute('id', divIdName);
-		newdiv.innerHTML = getTask();
-		div.appendChild(newdiv);
+		var url = "AddWeek.php";
+		url = url + "?q=" + divIdName;
+		url = url + "&sid=" + Math.random();
+		
+		xmlhttp = GetXmlHttpObject();
+		if (xmlhttp == null)
+		{
+			alert ("Your browser does not support XMLHTTP!");
+			return;
+		}
+		xmlhttp.onreadystatechange = stateChangedWeekAdded;
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send(null);
 	}
 	else
 	{

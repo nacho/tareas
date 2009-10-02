@@ -7,14 +7,14 @@ function getAPP()
 	$app = null;
 
 	session_start();
-	if (!isset($_SESSION['app2']))
+	if (!isset($_SESSION['appblah3']))
 	{
 		$app = new App;
-		$_SESSION['app'] = $app;
+		$_SESSION['appblah3'] = $app;
 	}
 	else
 	{
-		$app = $_SESSION['app'];
+		$app = $_SESSION['appblah3'];
 	}
 	
 	return $app;

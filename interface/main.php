@@ -4,37 +4,55 @@
 
 	include_once("../TaskStore.class.php");
 	include_once("../app.class.php");
-	include("../utils.php");
+	include_once("../utils.php");
 
 	$app = getAPP();
 	$db = $app->getDB();
 	
 	$taskStore = new TaskStore($db);
 	$tasks = $taskStore->getTasks();
-	
 
 
-function fillDiv($t)
+function fillDiv($global_user, $t)
 {
 	$new_week = false;
 	$prev = null;
 
 	foreach($t as $task)
 	{
-		
+		$is_user = false;
+
 		if ($prev != $task->getWeek())
 		{
-			echo "<div id='".$prev."'>";
+			echo "<div class='week' id='".$task->getWeek()."'>";
+			echo "<ul class='menu'>";
 			$new_week = true;
 		}
 		
-		($task->getUser() == null) ? $u = "None" : $u = $task->getUser()->getName();
+		if ($task->getUser() == null)
+		{
+			$user = "None";
+			$c = "no-user";
+		}
+		else
+		{
+			$user = $task->getUser()->getName();
+			$c = "selected";
+			if ($user == $global_user->getName())
+			{
+				$is_user = true;
+			}
+		}
 		
-		echo "<button type='button'>".$task->getName()."<br>User: ".$u."</button>";
+		if ($is_user == true)
+			echo "<li class='".$c."'><b>".$task->getName()."<br>User: ".$user."</b></li>";
+		else
+			echo "<li class='".$c."'>".$task->getName()."<br>User: ".$user."</li>";
 		$prev = $task->getWeek();
 		
-		if ($prev == $task->getWeek() && $new_week)
+		if ($prev != $task->getWeek() && $new_week)
 		{
+			echo "</ul>";
 			echo "</div>";
 			$new_week = false;
 		}
@@ -44,18 +62,20 @@ function fillDiv($t)
 ?>
 
 <head>
+	<link rel="stylesheet" type="text/css" href="tasks.css">
 	<script src="UtilJavaScript.js"></script>
 </head>
 
 <html>
-
-	<div id="messages"></div>
-	<button type="button" onClick="addWeek();">Add Week</button>
-	<div id="weeks">
-	<?php
+	<body>
+		<div id="messages"></div>
+		<button type="button" onClick="addWeek();">Add Week</button>
+		<div id="weeks">
+		<?php
 	
-		fillDiv($tasks);
+			fillDiv($app->getUser(), $tasks);
 	
-	?>
-	</div>
+		?>
+		</div>
+	</body>
 </html>
