@@ -1,3 +1,9 @@
+Date.prototype.getWeek = function()
+{
+	var onejan = new Date(this.getFullYear(),0,1);
+	return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
+}
+
 function GetXmlHttpObject()
 {
 	var xmlhttp = null;
@@ -36,7 +42,7 @@ function stateChangedWeekAdded()
 function addWeek()
 {
 	var date = new Date();
-	divIdName = date.getDate()+"-"+date.getMonth() + 1+"-"+date.getFullYear();
+	divIdName = date.getWeek()+"-"+date.getFullYear();
 	
 	if (document.getElementById(divIdName) == null)
 	{

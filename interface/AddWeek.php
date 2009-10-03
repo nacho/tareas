@@ -16,7 +16,7 @@
 		$task = new Task(getTaskName($i), $q);
 		$store->addTask($task);
 		
-		echo "<li id='".$task->getName()."' onClick='taskMade();>".$task->getName()."<br>User: None </li>";
+		echo "<li id='".$task->getName().$task->getWeek()."' onClick=\"taskMade('".$app->getUser()->getName()."', '".$task->getWeek()."', '".$task->getName()."');\">".$task->getName()."<br>User: None</li>";
 	}
 	echo "</ul>";
 ?>
