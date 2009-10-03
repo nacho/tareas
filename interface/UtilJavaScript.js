@@ -61,3 +61,44 @@ function addWeek()
 		msg.innerHTML = "<h1>Ya esta anhadida la semana</h1>";
 	}
 }
+
+var taskId;
+function stateChangedTaskModified()
+{
+	if (xmlhttp.readyState == 4)
+	{
+		var li = document.getElementById(taskId);
+		var text = xmlhttp.responseText;
+	
+		if (text == "Error: User exists")
+		{
+			var msg = document.getElementById('messages');
+		
+			msg.innerHTML = "<h1>"+ text +"</h1>";
+		}
+		else
+		{
+			li.innerHTML = text;
+		}
+	}
+}
+
+function taskMade(user, week, task)
+{
+	
+	taskId = task + week;
+	var url = "TaskModified.php";
+	
+	url = url + "?user=" + user + "&week=" + week + "&task=" + task;
+	url = url + "&sid=" + Math.random();
+	
+	xmlhttp = GetXmlHttpObject();
+	if (xmlhttp == null)
+	{
+		alert ("Your browser does not support XMLHTTP!");
+		return;
+	}
+	xmlhttp.onreadystatechange = stateChangedTaskModified;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send(null);
+}

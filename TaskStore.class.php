@@ -12,14 +12,6 @@ class TaskStore extends Store
 		parent::__construct($db);
 	}
 	
-	public function getNumWeeks()
-	{
-		$this->dbQuery ("SELECT count(*) FROM task group by week");
-		
-		$result = $this->getResult();
-		return $result[0];
-	}
-	
 	public function getTasks()
 	{
 		$tasks = array();
@@ -44,6 +36,30 @@ class TaskStore extends Store
 	public function addTask($task)
 	{
 		$this->dbQuery("INSERT INTO task (idTask, IdUser, name, week) VALUES (NULL, '', '".$task->getName()."', '".$task->getWeek()."')");
+	}
+	
+	public function weekHasUser($week, $user)
+	{
+		$userStore = new UserStore ($this->db);
+		
+		$id = $userStore->getIDFromName($user);
+	
+		$this->dbQuery("SELECT IdUser FROM task WHERE IdUser='".$id."' AND week='".$week."'");
+		
+		$r = $this->getResult();
+		if ($r['IdUser'] == '')
+			return false;
+		else
+			return true;
+	}
+	
+	public function modifyTask($user, $week, $task)
+	{
+		$userStore = new UserStore ($this->db);
+		
+		$id = $userStore->getIDFromName($user);
+		
+		$this->dbQuery("UPDATE task SET `IdUser` = '".$id."' WHERE week='".$week."' AND name='".$task."'");
 	}
 }
 

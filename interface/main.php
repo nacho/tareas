@@ -45,9 +45,9 @@ function fillDiv($global_user, $t)
 		}
 		
 		if ($is_user == true)
-			echo "<li class='".$c."'><b>".$task->getName()."<br>User: ".$user."</b></li>";
+			echo "<li id='".$task->getName().$task->getWeek()."' class='".$c."' onClick=\"taskMade('".$global_user->getName()."', '".$task->getWeek()."', '".$task->getName()."');\"><b>".$task->getName()."<br>User: ".$user."</b></li>";
 		else
-			echo "<li class='".$c."'>".$task->getName()."<br>User: ".$user."</li>";
+			echo "<li id='".$task->getName().$task->getWeek()."' class='".$c."' onClick=\"taskMade('".$global_user->getName()."', '".$task->getWeek()."', '".$task->getName()."');\">".$task->getName()."<br>User: ".$user."</li>";
 		$prev = $task->getWeek();
 		
 		if ($prev != $task->getWeek() && $new_week)

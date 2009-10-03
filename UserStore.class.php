@@ -33,7 +33,7 @@ class UserStore extends Store
 	{
 		$user = null;
 		
-		$r = $this->dbQuery("SELECT * FROM user WHERE id='".$id."'");
+		$this->dbQuery("SELECT * FROM user WHERE id='".$id."'");
 		
 		$result = $this->getResult();
 		
@@ -43,6 +43,22 @@ class UserStore extends Store
 		}
 		
 		return $user;
+	}
+	
+	public function getIDFromName($name)
+	{
+		$id = null;
+		
+		$this->dbQuery("SELECT id FROM user WHERE name='".$name."'");
+		
+		$result = $this->getResult();
+		
+		if ($result != null)
+		{
+			$id = $result['id'];
+		}
+		
+		return $id;
 	}
 }
 
