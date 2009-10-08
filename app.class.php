@@ -16,7 +16,7 @@ class App
 	#	Constructor
 	function __construct ()
 	{
-		$this->db = new DB("localhost", "tareas", "root", "blah");
+		$this->db = new DB("localhost", "tareas", "root", "IvXu5ir");
 		#FIXME: Create db if it does not exists
 		
 		$this->user = null;
