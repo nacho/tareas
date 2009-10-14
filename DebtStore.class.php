@@ -1,6 +1,7 @@
 <?php
 
-include_once("Store.class.php")
+include_once("Store.class.php");
+include_once("debt.class.php");
 
 #doc
 #	classname:	DebtStore
@@ -21,7 +22,7 @@ class DebtStore extends Store
 	{
 		$debts = array();
 		
-		$this->dbQuery("SELECT * FROM debts");
+		$this->dbQuery("SELECT * FROM debt");
 		
 		while ($r = $this->getResult())
 		{

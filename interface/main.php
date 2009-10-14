@@ -3,6 +3,7 @@
 	$app;
 
 	include_once("../TaskStore.class.php");
+	include_once("../DebtStore.class.php");
 	include_once("../app.class.php");
 	include_once("../utils.php");
 
@@ -11,7 +12,8 @@
 	
 	$taskStore = new TaskStore($db);
 	$tasks = $taskStore->getTasks();
-
+	$debtStore = new DebtStore($db);
+	$debts = $debtStore->getDebts();
 
 function fillDiv($global_user, $t)
 {
@@ -59,6 +61,11 @@ function fillDiv($global_user, $t)
 	}
 }
 
+function fillDebts($global_user, $d)
+{
+	
+}
+
 ?>
 
 <head>
@@ -69,13 +76,25 @@ function fillDiv($global_user, $t)
 <html>
 	<body>
 		<div id="messages"></div>
-		<button type="button" onClick="addWeek();">Add Week</button>
 		<div id="weeks">
-		<?php
-	
-			fillDiv($app->getUser(), $tasks);
-	
-		?>
+			<button type="button" onClick="addWeek();">Add Week</button>
+			<?php
+			
+				fillDiv($app->getUser(), $tasks);
+			
+			?>
+		</div>
+		<div id="debts">
+			<div id="formDebt">
+				
+			</div>
+			<div id="tableDebts">
+			<?php
+			
+				fillDebts($app->getUser(), $debts);
+			
+			?>
+			</div>
 		</div>
 	</body>
 </html>
