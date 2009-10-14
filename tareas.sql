@@ -16,6 +16,26 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `debt`
+--
+
+CREATE TABLE IF NOT EXISTS `debt` (
+  `idDebt` int(11) NOT NULL AUTO_INCREMENT,
+  `idUser1` int(11) NOT NULL,
+  `idUser2` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  PRIMARY KEY (`idDebt`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `debt`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `task`
 --
 
