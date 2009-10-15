@@ -64,7 +64,7 @@ function addWeek()
 	{
 		var msg = document.getElementById('messages');
 		
-		msg.innerHTML = "<h1>Ya esta anhadida la semana</h1>";
+		msg.innerHTML = "<h1>Week already added</h1>";
 	}
 }
 
@@ -76,7 +76,7 @@ function stateChangedTaskModified()
 		var li = document.getElementById(taskId);
 		var text = xmlhttp.responseText;
 	
-		if (text == "Error: User exists")
+		if (text == "User already exists")
 		{
 			var msg = document.getElementById('messages');
 		

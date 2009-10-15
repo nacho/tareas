@@ -60,6 +60,21 @@ class UserStore extends Store
 		
 		return $id;
 	}
+	
+	public function getUsers()
+	{
+		$users = array();
+	
+		$this->dbQuery("SELECT * FROM user");
+		
+		while ($r = $this->getResult())
+		{
+			$user = new User($r['name'], $r['pass'], $r['email']);
+			array_push($users, $user);
+		}
+		
+		return $users;
+	}
 }
 
 ?>

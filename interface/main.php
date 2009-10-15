@@ -68,6 +68,31 @@ function fillDebts($global_user, $d)
 	
 }
 
+function fillUsers($users)
+{
+	foreach($users as $user)
+	{
+		echo "<option value='".$user->getName()."'>".$user->getName()."</option>";
+	}
+}
+
+function createDebtForm($db)
+{
+	$userStore = new UserStore($db);
+	
+	$users = $userStore->getUsers();
+	
+	echo "<select name='user1'>";
+	fillUsers($users);
+	echo "</select>";
+	
+	echo "<select name='user2'>";
+	fillUsers($users);
+	echo "</select>";
+	
+	echo "<button type='button' onClick='addDebt();'>Add debt</button>";
+}
+
 ?>
 
 <head>
@@ -77,6 +102,9 @@ function fillDebts($global_user, $d)
 
 <html>
 	<body>
+		<div id="title">
+			<img src="title.png">
+		</div>
 		<div id="messages"></div>
 		<div id="weeks">
 			<button type="button" onClick="addWeek();">Add Week</button>
@@ -88,7 +116,11 @@ function fillDebts($global_user, $d)
 		</div>
 		<div id="debts">
 			<div id="formDebt">
-			
+				<?php
+				
+					createDebtForm($db);
+				
+				?>
 			</div>
 			<div id="tableDebts">
 			<?php

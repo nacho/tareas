@@ -25,16 +25,16 @@ function getTaskName($i)
 	switch ($i)
 	{
 		case '1':
-			$name = "Baño grande";
+			$name = "Bathroom";
 		break;
 		case '2':
-			$name = "Baño pequeño";
+			$name = "Toilet";
 		break;
 		case '3':
-			$name = "Cocina";
+			$name = "Kitchen";
 		break;
 		case '4':
-			$name = "Pasillo";
+			$name = "Corridor";
 		break;
 		default:
 			$name = null;

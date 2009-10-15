@@ -12,7 +12,7 @@
 	$taskStore = new TaskStore($app->getDB());
 
 	if ($taskStore->weekHasUser($week, $user))
-		echo "Error: User exists";
+		echo "User already exists";
 	else
 	{
 		$taskStore->modifyTask($user, $week, $task);
