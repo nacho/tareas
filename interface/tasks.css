@@ -21,6 +21,19 @@ h4 {
   color: #444;
 }
 
+#debts {
+  float: right;
+}
+
+#weeks {
+  float: left;
+}
+
+#weeks button {
+  float: left;
+  clear: both;
+}
+
 .week {
   float: left;
   background-color: #f9f9f9;

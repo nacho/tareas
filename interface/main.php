@@ -19,16 +19,17 @@ function fillDiv($global_user, $t)
 {
 	$new_week = false;
 	$prev = null;
+	$i = 0;
 
-	foreach($t as $task)
+	while($t[$i] != null)
 	{
+		$task = $t[$i];
 		$is_user = false;
 
 		if ($prev != $task->getWeek())
 		{
-			echo "<div class='week' id='".$task->getWeek()."'>";
-			echo "<ul class='menu'>";
-			$new_week = true;
+			echo "<div class='week' id='".$task->getWeek()."'>\n";
+			echo "<ul class='menu'>\n";
 		}
 		
 		if ($task->getUser() == null)
@@ -47,17 +48,18 @@ function fillDiv($global_user, $t)
 		}
 		
 		if ($is_user == true)
-			echo "<li id='".$task->getName().$task->getWeek()."' class='".$c."' onClick=\"taskMade('".$global_user->getName()."', '".$task->getWeek()."', '".$task->getName()."');\"><b>".$task->getName()."<br>User: ".$user."</b></li>";
+			echo "<li id='".$task->getName().$task->getWeek()."' class='".$c."' onClick=\"taskMade('".$global_user->getName()."', '".$task->getWeek()."', '".$task->getName()."');\"><b>".$task->getName()."<br>User: ".$user."</b></li>\n";
 		else
-			echo "<li id='".$task->getName().$task->getWeek()."' class='".$c."' onClick=\"taskMade('".$global_user->getName()."', '".$task->getWeek()."', '".$task->getName()."');\">".$task->getName()."<br>User: ".$user."</li>";
-		$prev = $task->getWeek();
+			echo "<li id='".$task->getName().$task->getWeek()."' class='".$c."' onClick=\"taskMade('".$global_user->getName()."', '".$task->getWeek()."', '".$task->getName()."');\">".$task->getName()."<br>User: ".$user."</li>\n";
 		
-		if ($prev != $task->getWeek() && $new_week)
+		if ($t[$i + 1] == null || $t[$i + 1]->getWeek() != $task->getWeek())
 		{
-			echo "</ul>";
-			echo "</div>";
-			$new_week = false;
+			echo "</ul>\n";
+			echo "</div>\n";
 		}
+		
+		$prev = $task->getWeek();
+		$i++;
 	}
 }
 
@@ -86,7 +88,7 @@ function fillDebts($global_user, $d)
 		</div>
 		<div id="debts">
 			<div id="formDebt">
-				
+			
 			</div>
 			<div id="tableDebts">
 			<?php
