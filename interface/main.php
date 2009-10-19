@@ -21,7 +21,7 @@ function fillDiv($global_user, $t)
 	$prev = null;
 	$i = 0;
 
-	while($t[$i] != null)
+	while ($t[$i] != null)
 	{
 		$task = $t[$i];
 		$is_user = false;
@@ -63,9 +63,28 @@ function fillDiv($global_user, $t)
 	}
 }
 
-function fillDebts($global_user, $d)
+function fillDebts($d)
 {
+	$i = 0;
 	
+	while ($d[$i] != null)
+	{
+		$debt = $d[$i];
+		$user1 = $debt->getUser1();
+		$user2 = $debt->getUser2();
+		
+		echo "<div id='debt' class='debt'>";
+		echo "<ul class='menu'>";
+		
+		($debt->getPayed() == true) ? $c = "selected" : "blah";
+		
+		echo "<li id='".$debt->getId()."' onClick=\"debtPayed(".$debt->getId().");\">".$user1->getName()." ---> ".$user2->getName()." : ".$debt->getAmount()."<br>Description: ".$debt->getDescription()."</li>";
+		
+		echo "</ul>";
+		echo "</div>";
+		
+		$i++;
+	}
 }
 
 function fillUsers($users)
@@ -82,13 +101,16 @@ function createDebtForm($db)
 	
 	$users = $userStore->getUsers();
 	
-	echo "<select name='user1'>";
+	echo "<select id='debtUser1'>";
 	fillUsers($users);
 	echo "</select>";
 	
-	echo "<select name='user2'>";
+	echo "<select id='debtUser2'>";
 	fillUsers($users);
 	echo "</select>";
+	
+	echo "<input type='text' id='debtAmount' value='' />";
+	echo "<input type='text' id='debtDescription' value='' />";
 	
 	echo "<button type='button' onClick='addDebt();'>Add debt</button>";
 }
@@ -122,12 +144,12 @@ function createDebtForm($db)
 				
 				?>
 			</div>
-			<div id="tableDebts">
-			<?php
-			
-				fillDebts($app->getUser(), $debts);
-			
-			?>
+			<div id='debts'>
+				<?php
+				
+					fillDebts($debts);
+				
+				?>
 			</div>
 		</div>
 	</body>

@@ -91,7 +91,6 @@ function stateChangedTaskModified()
 
 function taskMade(user, week, task)
 {
-	
 	taskId = task + week;
 	var url = "TaskModified.php";
 	
@@ -105,6 +104,44 @@ function taskMade(user, week, task)
 		return;
 	}
 	xmlhttp.onreadystatechange = stateChangedTaskModified;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send(null);
+}
+
+function stateChangedAddDebt()
+{
+	if (xmlhttp.readyState == 4)
+	{
+		var debts = document.getElementById('debts');
+		var newdiv = document.createElement('div');
+		
+		newdiv.setAttribute('id', "debt");
+		newdiv.setAttribute('class', "debt");
+		newdiv.innerHTML = xmlhttp.responseText;
+		debts.appendChild(newdiv);
+	}
+}
+
+function addDebt()
+{
+	var url = "AddDebt.php";
+	var user1, user2, amount, description;
+	
+	user1 = document.getElementById("debtUser1").value;
+	user2 = document.getElementById("debtUser2").value;
+	amount = document.getElementById("debtAmount").value;
+	description = document.getElementById("debtDescription").value;
+	
+	url = url + "?user1=" + user1 + "&user2=" + user2 + "&amount=" + amount + "&desc=" + description;
+	url = url + "&sid=" + Math.random();
+	
+	xmlhttp = GetXmlHttpObject();
+	if (xmlhttp == null)
+	{
+		alert ("Your browser does not support XMLHTTP!");
+		return;
+	}
+	xmlhttp.onreadystatechange = stateChangedAddDebt;
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send(null);
 }

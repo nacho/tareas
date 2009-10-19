@@ -90,3 +90,61 @@ h4 {
 .week ul.menu li:hover b {
   color: #333;
 }
+
+
+.debt {
+  background-color: #f9f9f9;
+  clear: both;
+}
+
+.debt .menu {
+  list-style: none;
+  margin: 5px;
+  margin-right: 0;
+  padding: 0;
+}
+
+.debt li {
+  list-style: none;
+}
+
+.debt ul.menu li {
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  border: 1px solid #DF49C3;
+  font-size: 10pt;
+  background-color: #FF78E6;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.debt ul.menu li b {
+  text-decoration: none;
+  color: #97bf60;
+}
+
+.debt ul.menu li.selected {
+  background-color: #dde8ce;
+  border: 1px solid #97bf60;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.debt ul.menu li.selected b {
+  color: #aa0000;
+  font-weight: bold;
+}
+
+.debt ul.menu li:hover {
+  background-color: #dde8ce;
+  border: 1px solid #97bf60;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+.debt ul.menu li:hover b {
+  color: #333;
+}
