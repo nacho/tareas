@@ -56,6 +56,11 @@ class Debt
 		return $this->amount;
 	}
 	
+	public function setAmount($amount)
+	{
+		$this->amount = $amount;
+	}
+	
 	public function getPayed()
 	{
 		return $this->payed;

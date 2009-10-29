@@ -89,7 +89,7 @@ function fillDebts($d)
 
 function fillUsers($users)
 {
-	foreach($users as $user)
+	foreach ($users as $user)
 	{
 		echo "<option value='".$user->getName()."'>".$user->getName()."</option>";
 	}
@@ -113,6 +113,33 @@ function createDebtForm($db)
 	echo "<input type='text' id='debtDescription' value='' />";
 	
 	echo "<button type='button' onClick='addDebt();'>Add debt</button>";
+}
+
+function fillTotalDebts($db, $globalUser)
+{
+	$userStore = new UserStore($db);
+	$debtStore = new DebtStore($db);
+	
+	$users = $userStore->getUsers();
+	
+	foreach ($users as $user)
+	{
+		$debts = $debtStore->getTotalDebtsForUser($user);
+		
+		foreach ($debts as $debt)
+		{
+			$user1 = $debt->getUser1();
+			$user2 = $debt->getUser2();
+		
+			echo "<div id='debt' class='debt'>";
+			echo "<ul class='menu'>";
+		
+			echo "<li>".$user1->getName()." ---> ".$user2->getName()." : ".$debt->getAmount()."</li>";
+		
+			echo "</ul>";
+			echo "</div>";
+		}
+	}
 }
 
 ?>
@@ -141,6 +168,13 @@ function createDebtForm($db)
 				<?php
 				
 					createDebtForm($db);
+				
+				?>
+			</div>
+			<div id="totalDebts">
+				<?php
+				
+					fillTotalDebts($db, $app->getUser());
 				
 				?>
 			</div>
