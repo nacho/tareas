@@ -2,15 +2,22 @@
 
 class User
 {
+	private $id;
 	private $name;
 	private $pass;
 	private $email;
 	
-	public function __construct($name, $pass, $email)
+	public function __construct($id, $name, $pass, $email)
 	{
+		$this->id = $id;
 		$this->name = $name;
 		$this->pass = $pass;
 		$this->email = $email;
+	}
+	
+	public function getID()
+	{
+		return $this->id;
 	}
 	
 	public function setName($name)

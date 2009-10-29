@@ -22,7 +22,7 @@ class UserStore extends Store
 		
 		if ($r != null)
 		{
-			$user = new User($r['name'], $r['pass'], $r['email']);
+			$user = new User($r['id'], $r['name'], $r['pass'], $r['email']);
 		}
 		
 		
@@ -35,11 +35,11 @@ class UserStore extends Store
 		
 		$this->dbQuery("SELECT * FROM user WHERE id='".$id."'");
 		
-		$result = $this->getResult();
+		$r = $this->getResult();
 		
-		if ($result != null)
+		if ($r != null)
 		{
-			$user = new User($result['name'], $result['pass'], $result['email']);
+			$user = new User($r['id'], $r['name'], $r['pass'], $r['email']);
 		}
 		
 		return $user;
@@ -69,7 +69,7 @@ class UserStore extends Store
 		
 		while ($r = $this->getResult())
 		{
-			$user = new User($r['name'], $r['pass'], $r['email']);
+			$user = new User($r['id'], $r['name'], $r['pass'], $r['email']);
 			array_push($users, $user);
 		}
 		
