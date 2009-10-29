@@ -40,6 +40,11 @@ class Store
 	{
 		return mysql_num_rows($this->result);
 	}//querySize
+	
+	public function getInsertID()
+	{
+		return mysql_insert_id($this->db->getDBI());
+	}
 }
 ###
 
