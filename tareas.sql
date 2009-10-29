@@ -25,8 +25,9 @@ CREATE TABLE IF NOT EXISTS `debt` (
   `idUser2` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `description` varchar(200) NOT NULL,
+  `payed` tinyint(1) NOT NULL,
   PRIMARY KEY (`idDebt`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `debt`
