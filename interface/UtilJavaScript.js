@@ -145,3 +145,36 @@ function addDebt()
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send(null);
 }
+
+var debtId;
+
+function stateChangedDebtPayed()
+{
+	if (xmlhttp.readyState == 4)
+	{
+		var li = document.getElementById(debtId);
+		var text = xmlhttp.responseText;
+		
+		li.setAttribute('class', text);
+	}
+}
+
+function debtPayed(id)
+{
+	var url = "DebtPayed.php";
+	
+	debtId = id;
+	
+	url = url + "?debtId=" + id;
+	url = url + "&sid=" + Math.random();
+	
+	xmlhttp = GetXmlHttpObject();
+	if (xmlhttp == null)
+	{
+		alert ("Your browser does not support XMLHTTP!");
+		return;
+	}
+	xmlhttp.onreadystatechange = stateChangedDebtPayed;
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send(null);
+}

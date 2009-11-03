@@ -98,6 +98,11 @@ class DebtStore extends Store
 		
 		return $this->getInsertID();
 	}
+	
+	public function debtPayed($id)
+	{
+		$this->dbQuery("UPDATE debt SET `payed`='1' WHERE `idDebt`='".$id."'");
+	}
 }
 ###
 

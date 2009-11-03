@@ -76,9 +76,9 @@ function fillDebts($d)
 		echo "<div id='debt' class='debt'>";
 		echo "<ul class='menu'>";
 		
-		($debt->getPayed() == true) ? $c = "selected" : "blah";
+		($debt->getPayed() == true) ? $c = "selected" : $c = "blah";
 		
-		echo "<li id='".$debt->getId()."' onClick=\"debtPayed(".$debt->getId().");\">".$user1->getName()." ---> ".$user2->getName()." : ".$debt->getAmount()."<br>Description: ".$debt->getDescription()."</li>";
+		echo "<li id='".$debt->getId()."' class='".$c."' onClick=\"debtPayed(".$debt->getId().");\">".$user1->getName()." ---> ".$user2->getName()." : ".$debt->getAmount()."<br>Description: ".$debt->getDescription()."</li>";
 		
 		echo "</ul>";
 		echo "</div>";
