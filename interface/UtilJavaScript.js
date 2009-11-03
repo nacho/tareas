@@ -108,6 +108,23 @@ function taskMade(user, week, task)
 	xmlhttp.send(null);
 }
 
+function parseAmount(strAmount)
+{
+	var amount = 0;
+	var array;
+	var i = 0;
+	
+	array = strAmount.split("+");
+	
+	while (array[i] != null)
+	{
+		amount += parseFloat(array[i]);
+		i++;
+	}
+	
+	return amount;
+}
+
 function stateChangedAddDebt()
 {
 	if (xmlhttp.readyState == 4)
@@ -129,8 +146,9 @@ function addDebt()
 	
 	user1 = document.getElementById("debtUser1").value;
 	user2 = document.getElementById("debtUser2").value;
-	amount = document.getElementById("debtAmount").value;
 	description = document.getElementById("debtDescription").value;
+	
+	amount = parseAmount(document.getElementById("debtAmount").value);
 	
 	url = url + "?user1=" + user1 + "&user2=" + user2 + "&amount=" + amount + "&desc=" + description;
 	url = url + "&sid=" + Math.random();
