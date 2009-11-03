@@ -155,36 +155,45 @@ function fillTotalDebts($db, $globalUser)
 			<img src="title.png">
 		</div>
 		<div id="messages"></div>
-		<div id="weeks">
-			<button type="button" onClick="addWeek();">Add Week</button>
-			<?php
+		
+		<table>
+		<tr>
+		<td style="width:400px;">
+			<div id="weeks">
+				<button type="button" onClick="addWeek();">Add Week</button>
+				<?php
 			
-				fillDiv($app->getUser(), $tasks);
+					fillDiv($app->getUser(), $tasks);
 			
-			?>
-		</div>
-		<div id="debts">
-			<div id="formDebt">
-				<?php
-				
-					createDebtForm($db);
-				
 				?>
 			</div>
-			<div id="totalDebts">
-				<?php
+		</td>
+		<td style="padding-left:200px; margin-top:0px; vertical-align:top;">
+			<div id="debts">
+				<div id="formDebt">
+					<?php
 				
-					fillTotalDebts($db, $app->getUser());
+						createDebtForm($db);
 				
-				?>
+					?>
+				</div>
+				<div id="totalDebts">
+					<?php
+				
+						fillTotalDebts($db, $app->getUser());
+				
+					?>
+				</div>
+				<div id='debts'>
+					<?php
+				
+						fillDebts($debts);
+				
+					?>
+				</div>
 			</div>
-			<div id='debts'>
-				<?php
-				
-					fillDebts($debts);
-				
-				?>
-			</div>
-		</div>
+		</td>
+		</tr>
+		</table>
 	</body>
 </html>
